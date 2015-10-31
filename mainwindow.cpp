@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->AdminFrame->setVisible(false);
     ui->MainFrame->setVisible(false);
     ui->Login->setVisible(true);
+    ui->Login->setEnabled(true);
 }
 
 MainWindow::~MainWindow()

@@ -18,6 +18,9 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QFrame" name="MainFrame">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -51,7 +54,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>90</y>
+       <y>70</y>
        <width>209</width>
        <height>101</height>
       </rect>
@@ -80,9 +83,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>230</y>
+       <y>170</y>
        <width>209</width>
-       <height>101</height>
+       <height>201</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -102,6 +105,38 @@
          <string>Update</string>
         </property>
        </widget>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0" alignment="Qt::AlignLeft">
+         <widget class="QPushButton" name="pushButton_4">
+          <property name="text">
+           <string>Delete User</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" alignment="Qt::AlignLeft">
+         <widget class="QPushButton" name="pushButton_7">
+          <property name="text">
+           <string>Show List</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="pushButton_8">
+          <property name="text">
+           <string>Add User</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="pushButton_9">
+          <property name="text">
+           <string>Batee5</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
@@ -167,19 +202,12 @@
     <zorder>AdminFrame</zorder>
     <zorder>DirectoryFrame</zorder>
     <zorder>StatusFrame</zorder>
-    <zorder>verticalLayoutWidget</zorder>
-    <zorder>UserIDSearchFrame</zorder>
-    <zorder>AdminFrame</zorder>
-    <zorder>DirectoryFrame</zorder>
-    <zorder>StatusFrame</zorder>
-    <zorder>verticalLayoutWidget</zorder>
-    <zorder>UserIDSearchFrame</zorder>
-    <zorder>AdminFrame</zorder>
-    <zorder>DirectoryFrame</zorder>
-    <zorder>StatusFrame</zorder>
-    <zorder>frame</zorder>
+    <zorder>Login</zorder>
    </widget>
    <widget class="QWidget" name="Login" native="true">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -234,7 +262,14 @@
       </item>
      </layout>
     </widget>
+    <zorder>UserIDSearchFrame_2</zorder>
+    <zorder>AdminFrame</zorder>
+    <zorder>UserIDSearchFrame</zorder>
+    <zorder>AdminFrame_2</zorder>
+    <zorder>AdminFrame</zorder>
    </widget>
+   <zorder>Login</zorder>
+   <zorder>MainFrame</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
