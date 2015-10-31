@@ -15,15 +15,13 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-public slots:
+private slots:
     void on_actionOpen_triggered();
-    void on_pushButton_clicked();
-    void incrementStatusBar();
+
+    void on_actionQuit_triggered();
 
 private:
     Ui::MainWindow *ui;
-    QTimer* timer;
-    float statusBarCurrentValue;
 };
 
 #endif // MAINWINDOW_H
