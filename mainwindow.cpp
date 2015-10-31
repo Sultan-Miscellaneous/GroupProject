@@ -12,10 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->AdminFrame->setVisible(false);
-    ui->MainFrame->setVisible(false);
-    ui->Login->setVisible(true);
-    ui->Login->setEnabled(true);
+    ui->AdminFrame->setVisible(true);
+    ui->MainFrame->setVisible(true);
 }
 
 MainWindow::~MainWindow()
@@ -40,9 +38,3 @@ void MainWindow::on_actionQuit_triggered()
       qApp->quit();
 }
 
-void MainWindow::on_LoginButton_clicked()
-{
-    ui->AdminFrame->setVisible(true);
-    ui->MainFrame->setVisible(true);
-    ui->Login->setVisible(false);
-}

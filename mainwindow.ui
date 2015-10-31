@@ -197,79 +197,7 @@
       </item>
      </layout>
     </widget>
-    <zorder>verticalLayoutWidget</zorder>
-    <zorder>UserIDSearchFrame</zorder>
-    <zorder>AdminFrame</zorder>
-    <zorder>DirectoryFrame</zorder>
-    <zorder>StatusFrame</zorder>
-    <zorder>Login</zorder>
    </widget>
-   <widget class="QWidget" name="Login" native="true">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>641</width>
-      <height>441</height>
-     </rect>
-    </property>
-    <widget class="QFrame" name="UserIDSearchFrame_2">
-     <property name="geometry">
-      <rect>
-       <x>210</x>
-       <y>120</y>
-       <width>209</width>
-       <height>171</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_5">
-      <item>
-       <widget class="QLabel" name="LoginTitle">
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Enter Login Info&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="UsernameLabel">
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Username&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-       <widget class="QTextEdit" name="UsernameTextBox"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="PasswordLabel">
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Password&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QTextEdit" name="PaswortTextBox"/>
-      </item>
-      <item alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="LoginButton">
-        <property name="text">
-         <string>Login</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-    <zorder>UserIDSearchFrame_2</zorder>
-    <zorder>AdminFrame</zorder>
-    <zorder>UserIDSearchFrame</zorder>
-    <zorder>AdminFrame_2</zorder>
-    <zorder>AdminFrame</zorder>
-   </widget>
-   <zorder>Login</zorder>
-   <zorder>MainFrame</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
