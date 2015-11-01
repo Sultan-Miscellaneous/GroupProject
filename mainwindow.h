@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <qstackedwidget.h>
 #include <QTimer>
 
 namespace Ui {
@@ -23,7 +22,7 @@ private slots:
     void on_actionQuit_triggered();
 
 private:
-    QStackedWidget frames;
+
 };
 
 #endif // MAINWINDOW_H
