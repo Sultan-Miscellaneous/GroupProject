@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QTimer>
 #include "binarysearchtree.h"
+#include <QStandardItemModel>
+
 namespace Ui {
 class MainWindow;
 }
@@ -15,7 +17,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     void setAccessLevel(bool accessLevel,QString);
     Ui::MainWindow *ui;
-//    void getData(QString);
+    void getData(QString);
+    void updateTable();
     ~MainWindow();
 
 private slots:
@@ -28,6 +31,7 @@ private slots:
 private:
     QString accessLevel;
     BST bst;
+    QStandardItemModel *model;
 };
 
 #endif // MAINWINDOW_H

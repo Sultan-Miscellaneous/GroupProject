@@ -1,28 +1,31 @@
 #include "binarysearchtree.h"
 
 BST::BST(){
+    sz = 0;
     root = NULL;
 }
 
-bool BST::insert(string& key, string& position, int& room, string& mobile, string& phone, string& info){
-    return insert(root, key, position, room, mobile, phone, info);
+BST::~BST(){
+    delete root;
 }
 
-bool BST::insert(node* &ptr, string& key, string& position, int& room, string& mobile, string& phone, string& info){
+bool BST::insert(string key, string position, int room, string mobile, string phone, string info){
+    return (sz++,insertt(root, key, position, room, mobile, phone, info));
+}
+
+bool BST::insertt(node* &ptr, string key, string position, int room, string mobile, string phone, string info){
     if(!ptr){
         ptr = new node(key,position,room,mobile,phone,info);
         return true;
     }else if (ptr->key == key)
         return false;
     else if(key<ptr->key)
-        return insert(ptr->left,key,position,room,mobile,phone,info);
+        return insertt(ptr->left,key,position,room,mobile,phone,info);
     else
-        return insert(ptr->right,key,position,room,mobile,phone,info);
-
+        return insertt(ptr->right,key,position,room,mobile,phone,info);
 }
 
-
-node* BST::search(node*& ptr, string& key)const{
+node* BST::search(node*& ptr, string key)const{
     if(!ptr){
         return NULL;
     }else if (ptr->key == key)
@@ -35,11 +38,11 @@ node* BST::search(node*& ptr, string& key)const{
 
 
 
-void BST::remove(string& key){
+void BST::remove(string key){
     remove(root, key);
 }
 
-node* BST::remove(node*& root, string& key){
+node* BST::remove(node*& root, string key){
     node* save;
     if(root == NULL)
         return NULL;
@@ -73,13 +76,13 @@ node* BST::remove(node*& root, string& key){
     return root;
 }
 
-node* BST::searchInOrder(node* t, string key){
+void BST::inOrder(node* t){
     if (t){
-        if(t->key == key) return t;
-        if(t->left) searchInOrder(t->left, key);
-        if(t->right) searchInOrder(t->right, key);
+        if(t->left) inOrder(t->left);
+        *(arr+idx) = t;
+        idx++;
+        if(t->right)inOrder(t->right);
     }
-    return t;
 }
 
 node* BST::getParent(node*& ptr, string key){
@@ -98,3 +101,9 @@ node* BST::getParent(node*& ptr, string key){
     }
     return p;
 }
+
+//string BST::operator[][](int i, int j){
+
+//}
+
+

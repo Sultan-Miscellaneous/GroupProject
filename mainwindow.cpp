@@ -3,8 +3,8 @@
 #include "loginform.h"
 #include <QFileDialog>
 #include <iostream>
+#include <stdlib.h>
 #include <QFont>
-#include <QStandardItemModel>
 
 
 using namespace std;
@@ -14,14 +14,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QStandardItemModel *model = new QStandardItemModel(50,5,this); //2 Rows and 3 Columns
+    model = new QStandardItemModel(50,5,this); //2 Rows and 3 Columns
     model->setHorizontalHeaderItem(0, new QStandardItem(QString("Name")));
     model->setHorizontalHeaderItem(1, new QStandardItem(QString("Position")));
     model->setHorizontalHeaderItem(2, new QStandardItem(QString("Room")));
     model->setHorizontalHeaderItem(3, new QStandardItem(QString("Mobile")));
     model->setHorizontalHeaderItem(4, new QStandardItem(QString("Office Phone")));
     model->setHorizontalHeaderItem(4, new QStandardItem(QString("Other")));
-
     ui->tableView->setModel(model);
 }
 
@@ -70,17 +69,35 @@ void MainWindow::on_LogoutButton_clicked()
     newLogin->show();
 }
 
-//void MainWindow::getData(QString read){
-////    QFile file(read);
-////    file.open(QIODevice::ReadOnly);
-////    QTextStream textStream(&file);
+void MainWindow::updateTable(){
+    bst.inOrder();
+    for(int i = 0; i<bst.size(); i++){
+//        QStandardItem *key = new QStandardItem(bst[i]->key)
+//        model->setItem(i,0,key);
+//        QStandardItem *pos = new QStandardItem(bst[i]->position)
+//        model->setItem(i,1,pos);
+//        QStandardItem *room = new QStandardItem(bst[i]->room)
+//        model->setItem(i,2,room);
+//        QStandardItem *mobile = new QStandardItem(bst[i]->mobile)
+//        model->setItem(i,4,mobile);
+//        QStandardItem *pos = new QStandardItem(bst[i]->phone)
+//        model->setItem(i,4,phone);
+//        QStandardItem *pos = new QStandardItem(bst[i]->phone)
+//        model->setItem(i,5,phone);
+    }
+}
 
-////    while (!textStream.atEnd()){
-////        QString k,p,r,m,ph,info;
-////        textStream >> k >> p >> r >> m >> ph >> info;
-////        bst.insert(k,p,r,m,ph,info);
-////        insert(x, y, flag);
-////    }
+void MainWindow::getData(QString read){
+    QFile file(read);
+    file.open(QIODevice::ReadOnly);
+    QTextStream textStream(&file);
 
-////    file.close();
-//}
+    while (!textStream.atEnd()){
+        QString k,p,r,m,ph,info;
+        textStream >> k >> p >> r >> m >> ph >> info;
+        int room = atoi(r.toStdString().c_str());
+        bst.insert(k.toStdString(),p.toStdString(),room,m.toStdString(),ph.toStdString(),info.toStdString());
+    }
+
+    file.close();
+}

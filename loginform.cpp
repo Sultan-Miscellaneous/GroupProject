@@ -9,7 +9,7 @@ LoginForm::LoginForm(QWidget *parent) : QWidget(parent), ui(new Ui::LoginForm)
     ui->PasswordEdit->setEchoMode(QLineEdit::EchoMode::Password);
     parentFrame = new MainWindow;
     database.emptyTable("Empty");
-    database.readFile("/Users/Ali/Desktop/CS210/GroupProject/Logins.txt");
+    database.readFile("/Users/BAlKhamissi/Desktop/GroupProject/Logins.txt");
 }
 
 LoginForm::~LoginForm()
