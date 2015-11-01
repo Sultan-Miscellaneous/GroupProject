@@ -65,7 +65,7 @@
      <property name="geometry">
       <rect>
        <x>400</x>
-       <y>20</y>
+       <y>40</y>
        <width>211</width>
        <height>31</height>
       </rect>
@@ -130,23 +130,49 @@
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>60</y>
+       <y>80</y>
        <width>581</width>
-       <height>261</height>
+       <height>241</height>
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="AccountAccessLevel">
+    <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
        <x>30</x>
        <y>10</y>
-       <width>111</width>
-       <height>21</height>
+       <width>160</width>
+       <height>43</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="AccountAccessLevel">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Account Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="UsernameLabel">
+        <property name="text">
+         <string>Username</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QPushButton" name="LogoutButton">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>10</y>
+       <width>71</width>
+       <height>32</height>
       </rect>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Account Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>Logout</string>
      </property>
     </widget>
    </widget>

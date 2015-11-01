@@ -22,6 +22,9 @@ private slots:
 
     void on_PasswordEdit_returnPressed();
 
+
+    void on_PasswordEdit_textEdited(const QString &arg1);
+
 private:
     Ui::LoginForm *ui;
     MainWindow* parentFrame;

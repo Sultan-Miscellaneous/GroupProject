@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "loginform.h"
 #include <QFileDialog>
 #include <iostream>
 #include <QFont>
@@ -19,7 +20,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::setAccessLevel(bool accessLevel)
+void MainWindow::setAccessLevel(bool accessLevel,QString username)
 {
     if(accessLevel){
         this->accessLevel = "Administrator";
@@ -31,6 +32,7 @@ void MainWindow::setAccessLevel(bool accessLevel)
     font.setBold(true);
     ui->AccountAccessLevel->setText(this->accessLevel);
     ui->AccountAccessLevel->setFont(font);
+    ui->UsernameLabel->setText(username);
 }
 void MainWindow::on_actionOpen_triggered()
 {
@@ -49,3 +51,10 @@ void MainWindow::on_actionQuit_triggered()
       qApp->quit();
 }
 
+
+void MainWindow::on_LogoutButton_clicked()
+{
+    LoginForm* newLogin = new LoginForm;
+    this->hide();
+    newLogin->show();
+}

@@ -13,7 +13,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = 0);
-    void setAccessLevel(bool accessLevel);
+    void setAccessLevel(bool accessLevel,QString);
     Ui::MainWindow *ui;
     ~MainWindow();
 
@@ -22,9 +22,10 @@ private slots:
 
     void on_actionQuit_triggered();
 
+    void on_LogoutButton_clicked();
+
 private:
     QString accessLevel;
-
 };
 
 #endif // MAINWINDOW_H
