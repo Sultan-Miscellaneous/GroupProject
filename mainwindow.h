@@ -16,7 +16,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     Ui::MainWindow *ui;
     ~MainWindow();
-    //Batee5
 
 private slots:
     void on_actionOpen_triggered();
@@ -24,6 +23,7 @@ private slots:
     void on_actionQuit_triggered();
 
 private:
+    QStackedWidget frames;
 };
 
 #endif // MAINWINDOW_H

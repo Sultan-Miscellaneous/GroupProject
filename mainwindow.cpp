@@ -13,7 +13,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    ui->AdminFrame->setVisible(true);
     ui->MainFrame->setVisible(true);
 }
 
@@ -26,11 +25,11 @@ void MainWindow::on_actionOpen_triggered()
 {
     QUrl filePath = QFileDialog::getOpenFileUrl(this,tr("Select a file"),QDir::homePath());
     if(filePath.toString()!=""){
-        ui->DirectoryLabel->setText((QString)"Current directory: "
-                                ""+filePath.toString());
+//        ui->DirectoryLabel->setText((QString)"Current directory: "
+//                                ""+filePath.toString());
         QFont font;
         font.setBold(true);
-        ui->DirectoryLabel->setFont(font);
+//        ui->DirectoryLabel->setFont(font);
     }
 }
 
