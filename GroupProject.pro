@@ -17,7 +17,11 @@ SOURCES += main.cpp\
     loginform.cpp
 
 HEADERS  += mainwindow.h \
-    loginform.h
+    loginform.h \
+    hashtable.h
 
 FORMS    += mainwindow.ui \
     loginform.ui
+
+DISTFILES += \
+    Logins

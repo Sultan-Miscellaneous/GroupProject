@@ -39,7 +39,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>380</y>
+       <y>370</y>
        <width>640</width>
        <height>61</height>
       </rect>
@@ -86,41 +86,41 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="horizontalLayoutWidget_3">
+    <widget class="QFrame" name="AdminControls_2">
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>339</y>
+       <y>330</y>
        <width>581</width>
        <height>41</height>
       </rect>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <layout class="QHBoxLayout" name="AdminControls">
       <item>
-       <widget class="QPushButton" name="pushButton_4">
-        <property name="text">
-         <string>Delete User</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_8">
+       <widget class="QPushButton" name="AddUserButton">
         <property name="text">
          <string>Add User</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_7">
+       <widget class="QPushButton" name="DeleteUserButton">
+        <property name="text">
+         <string>Delete User</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="ShowListButton">
         <property name="text">
          <string>Show List</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_9">
+       <widget class="QPushButton" name="SaveButton">
         <property name="text">
-         <string>Batee5</string>
+         <string>Save</string>
         </property>
        </widget>
       </item>
@@ -136,7 +136,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="AccountAccessLevel">
      <property name="geometry">
       <rect>
        <x>30</x>

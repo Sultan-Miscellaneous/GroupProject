@@ -19,6 +19,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::setAccessLevel(bool accessLevel)
+{
+    if(accessLevel){
+        this->accessLevel = "Administrator";
+    }else{
+        this->accessLevel = "User";
+        ui->AdminControls_2->setVisible(false);
+    }
+    QFont font;
+    font.setBold(true);
+    ui->AccountAccessLevel->setText(this->accessLevel);
+    ui->AccountAccessLevel->setFont(font);
+}
 void MainWindow::on_actionOpen_triggered()
 {
     QUrl filePath = QFileDialog::getOpenFileUrl(this,tr("Select a file"),QDir::homePath());

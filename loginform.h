@@ -2,6 +2,8 @@
 #define LOGINFORM_H
 
 #include <QWidget>
+#include "hashtable.h"
+#include "mainwindow.h"
 
 namespace Ui {
 class LoginForm;
@@ -16,11 +18,14 @@ public:
     ~LoginForm();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_LoginButton_clicked();
+
+    void on_PasswordEdit_returnPressed();
 
 private:
     Ui::LoginForm *ui;
-    QWidget* parentFrame;
+    MainWindow* parentFrame;
+    hashTable<QString,QString> database;
 };
 
 #endif // LOGINFORM_H
