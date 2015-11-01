@@ -15,6 +15,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     void setAccessLevel(bool accessLevel,QString);
     Ui::MainWindow *ui;
+//    void getData(QString);
     ~MainWindow();
 
 private slots:
@@ -26,6 +27,7 @@ private slots:
 
 private:
     QString accessLevel;
+//    BST bst;
 };
 
 #endif // MAINWINDOW_H

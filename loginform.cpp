@@ -19,29 +19,32 @@ LoginForm::~LoginForm()
 
 void LoginForm::on_LoginButton_clicked()
 {
-    QString username = ui->UsernameEdit->text();
-    int userLocationInDatabase = database.search(username);
-    if (userLocationInDatabase != -1){
-        QString password = ui->PasswordEdit->text();
-        if(database.getPassword(userLocationInDatabase) == password){
-            this->hide();
-            parentFrame->setAccessLevel(database.getAccess(userLocationInDatabase),username);
-            parentFrame->show();
+    if(ui->PasswordEdit->text()!=""){
+        QString username = ui->UsernameEdit->text();
+        int userLocationInDatabase = database.search(username);
+        if (userLocationInDatabase != -1){
+            QString password = ui->PasswordEdit->text();
+            if(database.getPassword(userLocationInDatabase) == password){
+                this->hide();
+                parentFrame->setAccessLevel(database.getAccess(userLocationInDatabase),username);
+                parentFrame->show();
+            }else{
+                ui->PasswordEdit->setEchoMode(QLineEdit::EchoMode::Normal);
+                QFont font;
+                font.setBold(true);
+                ui->PasswordEdit->setFont(font);
+                ui->PasswordEdit->setText("Incorrect Password...");
+            }
         }else{
-            ui->PasswordEdit->setEchoMode(QLineEdit::EchoMode::Normal);
-            QFont font;
-            font.setBold(true);
-            ui->PasswordEdit->setFont(font);
-            ui->PasswordEdit->setText("Incorrect Password...");
+            ui->UsernameEdit->setText("Username does not exist.");
         }
-    }else{
-        ui->UsernameEdit->setText("Username does not exist.");
     }
 }
 
 void LoginForm::on_PasswordEdit_returnPressed()
 {
-    LoginForm::on_LoginButton_clicked();
+    if(ui->PasswordEdit->text()!="")
+        LoginForm::on_LoginButton_clicked();
 }
 
 

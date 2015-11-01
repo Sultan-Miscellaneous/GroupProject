@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <iostream>
 #include <QFont>
+#include <QStandardItemModel>
 
 
 using namespace std;
@@ -13,6 +14,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QStandardItemModel *model = new QStandardItemModel(50,5,this); //2 Rows and 3 Columns
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("Name")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Position")));
+    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Room")));
+    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Mobile")));
+    model->setHorizontalHeaderItem(4, new QStandardItem(QString("Office Phone")));
+    model->setHorizontalHeaderItem(4, new QStandardItem(QString("Other")));
+
+    ui->tableView->setModel(model);
 }
 
 MainWindow::~MainWindow()
@@ -27,6 +37,7 @@ void MainWindow::setAccessLevel(bool accessLevel,QString username)
     }else{
         this->accessLevel = "User";
         ui->AdminControls_2->setVisible(false);
+        ui->tableView->setEditTriggers(QTableView::EditTrigger::NoEditTriggers);
     }
     QFont font;
     font.setBold(true);
@@ -58,3 +69,18 @@ void MainWindow::on_LogoutButton_clicked()
     this->hide();
     newLogin->show();
 }
+
+//void MainWindow::getData(QString read){
+////    QFile file(read);
+////    file.open(QIODevice::ReadOnly);
+////    QTextStream textStream(&file);
+
+////    while (!textStream.atEnd()){
+////        QString k,p,r,m,ph,info;
+////        textStream >> k >> p >> r >> m >> ph >> info;
+////        bst.insert(k,p,r,m,ph,info);
+////        insert(x, y, flag);
+////    }
+
+////    file.close();
+//}
