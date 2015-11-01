@@ -14,11 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    loginform.cpp
+    loginform.cpp \
+    binarysearchtree.cpp
 
 HEADERS  += mainwindow.h \
     loginform.h \
-    hashtable.h
+    hashtable.h \
+    binarysearchtree.h \
+    node.h
 
 FORMS    += mainwindow.ui \
     loginform.ui
