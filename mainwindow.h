@@ -14,6 +14,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     void setAccessLevel(bool accessLevel,QString);
+    QString loginPath;
     Ui::MainWindow *ui;
     ~MainWindow();
 

@@ -14,7 +14,8 @@ class LoginForm : public QWidget
     Q_OBJECT
 
 public:
-    explicit LoginForm(QWidget *parent = 0);
+    explicit LoginForm(QWidget *parent = 0,QString loginPath="");
+    QString loginsPath="";
     ~LoginForm();
 
 private slots:
@@ -24,6 +25,8 @@ private slots:
 
 
     void on_PasswordEdit_textEdited(const QString &arg1);
+
+    void on_pushButton_clicked();
 
 private:
     Ui::LoginForm *ui;

@@ -159,7 +159,9 @@ long hashTable<keyType, dataType>::pow(int a, int b){
 template <class keyType, class dataType>
 void hashTable<keyType, dataType>::readFile(QString read){
     QFile file(read);
-    file.open(QIODevice::ReadOnly);
+    if(file.open(QIODevice::ReadOnly) == false){
+        cout<<"Could not open file, please specify correct file path in loginform.cpp"<<endl;
+    }
     QTextStream textStream(&file);
     QString x,y,z;
 

@@ -19,7 +19,7 @@
      <x>210</x>
      <y>130</y>
      <width>231</width>
-     <height>171</height>
+     <height>195</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -54,6 +54,13 @@
      <widget class="QPushButton" name="LoginButton">
       <property name="text">
        <string>Login</string>
+      </property>
+     </widget>
+    </item>
+    <item alignment="Qt::AlignHCenter">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Open Accounts File</string>
       </property>
      </widget>
     </item>

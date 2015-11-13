@@ -54,7 +54,8 @@ void MainWindow::on_actionQuit_triggered()
 
 void MainWindow::on_LogoutButton_clicked()
 {
-    LoginForm* newLogin = new LoginForm;
+    cout<<loginPath.toStdString()<<endl;
+    LoginForm* newLogin = new LoginForm(NULL,loginPath);
     this->hide();
     newLogin->show();
 }
