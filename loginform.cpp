@@ -18,6 +18,11 @@ LoginForm::LoginForm(QWidget *parent,QString loginPath) : QWidget(parent), ui(ne
         this->loginsPath=loginPath;
     }
     parentFrame = new MainWindow;
+<<<<<<< HEAD
+=======
+    database.emptyTable("Empty");
+    database.readFile("/Users/BAlKhamissi/Desktop/GroupProject/Logins.txt");
+>>>>>>> Badr's-Branch
 }
 
 LoginForm::~LoginForm()
@@ -27,7 +32,11 @@ LoginForm::~LoginForm()
 
 void LoginForm::on_LoginButton_clicked()
 {
+<<<<<<< HEAD
     if(database.tableIsEmpty()==false){
+=======
+    if(ui->PasswordEdit->text()!=""){
+>>>>>>> Badr's-Branch
         QString username = ui->UsernameEdit->text();
         int userLocationInDatabase = database.search(username);
         if (userLocationInDatabase != -1){
@@ -36,8 +45,11 @@ void LoginForm::on_LoginButton_clicked()
                 this->hide();
                 parentFrame->setAccessLevel(database.getAccess(userLocationInDatabase),username);
                 parentFrame->show();
+<<<<<<< HEAD
                 cout<<loginsPath.toStdString()<<endl;
                 parentFrame->loginPath=this->loginsPath;
+=======
+>>>>>>> Badr's-Branch
             }else{
                 ui->PasswordEdit->setEchoMode(QLineEdit::EchoMode::Normal);
                 QFont font;
@@ -48,15 +60,19 @@ void LoginForm::on_LoginButton_clicked()
         }else{
             ui->UsernameEdit->setText("Username does not exist.");
         }
+<<<<<<< HEAD
     }
     else{
         ui->UsernameEdit->setText("Database Empty");
+=======
+>>>>>>> Badr's-Branch
     }
 }
 
 void LoginForm::on_PasswordEdit_returnPressed()
 {
-    LoginForm::on_LoginButton_clicked();
+    if(ui->PasswordEdit->text()!="")
+        LoginForm::on_LoginButton_clicked();
 }
 
 

@@ -126,16 +126,6 @@
       </item>
      </layout>
     </widget>
-    <widget class="QListWidget" name="listWidget">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>80</y>
-       <width>581</width>
-       <height>241</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
@@ -173,6 +163,16 @@
      </property>
      <property name="text">
       <string>Logout</string>
+     </property>
+    </widget>
+    <widget class="QTableView" name="tableView">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>80</y>
+       <width>531</width>
+       <height>251</height>
+      </rect>
      </property>
     </widget>
    </widget>

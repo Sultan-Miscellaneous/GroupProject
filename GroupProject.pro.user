@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <!-- Written by QtCreator 3.5.1, 2015-11-02T13:51:13. -->
+=======
+<!-- Written by QtCreator 3.5.1, 2015-11-01T21:46:16. -->
+>>>>>>> Badr's-Branch
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
