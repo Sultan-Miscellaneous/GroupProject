@@ -100,7 +100,6 @@ void MainWindow::updateTable(){
 }
 
 void MainWindow::getData(QString read){
-    read.remove(0,7);
     QFile file(read);
     file.open(QIODevice::ReadOnly);
     QTextStream textStream(&file);
@@ -125,7 +124,8 @@ void MainWindow::on_pushButton_2_clicked()
 {
     QUrl filePath = QFileDialog::getOpenFileUrl(this,tr("Select a txt file"),QDir::homePath());
     if(!filePath.toString().isEmpty()){
-        MainWindow::getData(filePath.toString());
+        pathToDataFile = filePath.toString().remove(0,7);
+        MainWindow::getData(pathToDataFile);
         MainWindow::updateTable();
     }
 }
@@ -233,8 +233,34 @@ void MainWindow::on_DeleteUserButton_clicked()
         case QMessageBox::Yes:
         bst.remove(index.data().toString());
         ui->tableView->model()->removeRow(index.row());
-
         break;
+    case QMessageBox::No:
+        break;
+    }
+}
+
+void MainWindow::on_SaveButton_clicked()
+{
+    QModelIndex index = ui->tableView->model()->index(ui->tableView->currentIndex().row(),0);
+    QMessageBox box;
+    box.setText("Are you sure you want to overwrite data file?");
+    box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    box.setDefaultButton(QMessageBox::Yes);
+    switch(box.exec()){
+        case QMessageBox::Yes:{
+        QFile file(pathToDataFile);
+        file.open(QIODevice::WriteOnly);
+        QTextStream textStream(&file);
+        bst.inOrder();
+        for(int i = 0;i<bst.size(); i++){
+            textStream << bst[i]->data.key<<" "<< bst[i]->data.position<<" " << bst[i]->data.room<<" " << bst[i]->data.mobile<<" "
+                       << bst[i]->data.phone<<" " << bst[i]->data.info;
+            if(i!=bst.size()-1){
+                textStream<<'\n';
+            }
+        }
+        break;
+    }
     case QMessageBox::No:
         break;
     }

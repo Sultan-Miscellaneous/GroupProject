@@ -45,6 +45,8 @@ private slots:
 
     void on_DeleteUserButton_clicked();
 
+    void on_SaveButton_clicked();
+
 private:
     struct clientData{
         clientData(){
@@ -74,6 +76,7 @@ private:
         QString phone;
         QString info;
     };
+    QString pathToDataFile;
     QString accessLevel;
     BinarySearchTree<QString,clientData> bst;
     QStandardItemModel *model;

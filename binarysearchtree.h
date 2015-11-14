@@ -37,40 +37,10 @@ private:
         else
             return insertt(ptr->right,key,data);
     };
-    bool isEmpty(node<keyType,dataType>*)const{return root;}
-    node<keyType,dataType>* remove(node<keyType,dataType>*& ptr, keyType key){
-        node<keyType,dataType>* save;
-        if(ptr == NULL)
-            return NULL;
-        if(ptr->key == key){
-            if(ptr->right == NULL && ptr->left == NULL){
-                free(ptr);
-                return NULL;
-            }
-        }else if(ptr->right == NULL || ptr->left == NULL){
-            if(ptr->right == NULL){
-                save = ptr->left;
-                free(ptr);
-                return save;
-            }else{
-                save = ptr->right;
-                free(ptr);
-                return save;
-            }
-        }else{
-            save = getParent(ptr->left, key);
-            ptr->key = save->key;
-            ptr->left = remove(ptr->left, key);
-            return ptr;
-        }
+    bool isEmpty(node<keyType,dataType>*)const{
+        return root;
+    }
 
-        if(ptr->key < key){
-            ptr->right = remove(ptr->right, key);
-        }else if(ptr->key > key){
-            ptr->left = remove(ptr->left, key);
-        }
-        return ptr;
-    };
     void clear(node<keyType,dataType>*& ptr){
         if(ptr!=NULL){
            clear(ptr->left);
@@ -78,22 +48,6 @@ private:
            delete ptr;
         }
     }
-    node<keyType,dataType>* getParent(node<keyType,dataType>*& ptr, keyType key){
-        node<keyType,dataType>* p = NULL, *x = root;
-        bool found = false;
-        while (!found && x) {
-            if(key<ptr->key){
-                p = x;
-                x = x->left;
-            }else if(key>ptr->key){
-                p = x;
-                x = x->right;
-            }else{
-                found = true;
-            }
-        }
-        return p;
-    };
     node<keyType,dataType>* searchAndReturnPointer(node<keyType,dataType>*& ptr, keyType key)const{
         if(!ptr){
             return NULL;
@@ -110,6 +64,43 @@ private:
             *(arr+idx) = t;
             idx++;
             if(t->right)inOrder(t->right);
+        }
+    };
+    node<keyType,dataType>* inOrderSuccessor(node<keyType,dataType>* rootNode, node<keyType,dataType>* nodeTofind) {
+        if (!rootNode || !nodeTofind) return NULL;
+        node<keyType,dataType>* successor = NULL;
+        if (nodeTofind->right){
+            successor = nodeTofind->right;
+            while (successor->left) {
+                successor = successor->left;
+            }
+        }
+        else {
+            while (rootNode) {
+                if (nodeTofind->key < rootNode->key) {
+                    successor = rootNode;
+                    rootNode = rootNode->left;
+                }
+                else if (nodeTofind->key > rootNode->key) {
+                    rootNode = rootNode->right;
+                }
+                else {
+                    break;
+                }
+            }
+        }
+        return successor;
+    };
+
+    node<keyType,dataType>* getParent(node<keyType,dataType>*& ptr,node<keyType,dataType>*& parent, keyType key){
+        if(ptr==NULL){
+            return NULL;
+        }else if(ptr->key==key){
+            return parent;
+        }else if(key<ptr->key){
+            return getParent(ptr->left,ptr,key);
+        }else{
+            return getParent(ptr->right,ptr,key);
         }
     };
 public:
@@ -159,9 +150,72 @@ public:
             return false;
         }
     };
+    void printInorder(){
+        inOrder();
+        for(int i = 0; i<idx; i++){
+            cout<<arr[i]->key.toStdString();
+        }cout<<endl;
+    }
+    bool remove(keyType key){
+        node<keyType,dataType>* dataPtr = searchAndReturnPointer(root,key);
+        if(dataPtr!=NULL){
+            bool doDelete;
+            node<keyType,dataType>* dataPtrParent = NULL;
+            dataPtrParent = getParent(root,dataPtrParent,key);
+            if(dataPtr->left!=NULL && dataPtr->right!=NULL){
+                node<keyType,dataType>* successor = inOrderSuccessor(root,dataPtr);
+                node<keyType,dataType>* successorParent = NULL;
+                successorParent = getParent(root,successorParent,successor->key);
 
-    void remove(keyType key){
-        remove(root, key);
+                if(successor==NULL){
+                    dataPtr=dataPtrParent->right;
+                    dataPtrParent->right = NULL;
+                }else{
+                    dataPtr->data = successor->data;
+                    dataPtr->key = successor->key;
+                    dataPtr=successor;
+                    if(dataPtr->right!=NULL){
+                        dataPtr->key=dataPtr->right->key;
+                        dataPtr->data=dataPtr->right->data;
+                        dataPtr->right=dataPtr->right->right;
+                        doDelete = false;
+                    }else{
+                        if(successorParent->left==dataPtr){
+                            successorParent->left=NULL;
+                        }else if(successorParent->right==dataPtr){
+                            successorParent->right=NULL;
+                        }
+                        doDelete = true;
+                    }
+                }
+            }else{
+                node<keyType,dataType>* s;
+                if(dataPtr->left!=NULL){
+                    s=dataPtr->left;
+                }else if(dataPtr->right!=NULL){
+                    s=dataPtr->right;
+                }else{
+                    s=NULL;
+                }
+                if(dataPtrParent==NULL){
+                    root=s;
+                }else if(dataPtr==dataPtrParent->left){
+                    dataPtrParent->left=s;
+                }else{
+                    dataPtrParent->right=s;
+                }
+                doDelete = true;
+            }
+
+            if(doDelete){
+                delete dataPtr;
+            }
+
+            sz--;
+            return true;
+        }else{
+            return false;
+        }
     };
 
     int size(){return sz;}
