@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<<<<<<< HEAD
-<!-- Written by QtCreator 3.5.1, 2015-11-02T13:51:13. -->
-=======
-<!-- Written by QtCreator 3.5.1, 2015-11-01T21:46:16. -->
->>>>>>> Badr's-Branch
+<!-- Written by QtCreator 3.5.1, 2015-11-13T23:48:10. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{fbfa7e14-8353-4473-a2d9-358a1dc7457a}</value>
+  <value type="QByteArray">{4c049ca2-32ca-4944-bcf1-1bd4ad435ab9}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -243,8 +239,8 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">GroupProject</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">GroupProject2</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Users/BAlKhamissi/Desktop/GroupProject/GroupProject.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Users/Ali/Desktop/CS210/GroupProject/GroupProject.pro</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">GroupProject.pro</value>
     <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix">false</value>

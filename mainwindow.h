@@ -29,10 +29,55 @@ private slots:
 
     void on_LogoutButton_clicked();
 
+    void on_pushButton_2_clicked();
+
+    void on_AddUserButton_clicked();
+
+    void on_buttonBox_rejected();
+
+    void on_buttonBox_accepted();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_DeleteUserButton_clicked();
+
 private:
+    struct clientData{
+        clientData(){
+
+        }
+        clientData(QString key,QString position,int room,QString mobile,QString phone,QString info){
+            this->key = key;
+            this->position = position;
+            this->room = room;
+            this->mobile = mobile;
+            this->phone = phone;
+            this->info=info;
+        }
+        clientData(const clientData& rhs){
+            key = rhs.key;
+            position = rhs.position;
+            room = rhs.room;
+            mobile = rhs.mobile;
+            phone = rhs.phone;
+            info = rhs.info;
+        }
+
+        QString key;
+        QString position;
+        int room;
+        QString mobile;
+        QString phone;
+        QString info;
+    };
     QString accessLevel;
-    BST bst;
+    BinarySearchTree<QString,clientData> bst;
     QStandardItemModel *model;
+    QStandardItemModel *searchModel;
 };
 
 #endif // MAINWINDOW_H

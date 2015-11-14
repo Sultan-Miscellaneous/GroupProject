@@ -23,7 +23,6 @@ private slots:
 
     void on_PasswordEdit_returnPressed();
 
-
     void on_PasswordEdit_textEdited(const QString &arg1);
 
     void on_pushButton_clicked();

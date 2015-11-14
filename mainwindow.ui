@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
+    <width>639</width>
     <height>480</height>
    </rect>
   </property>
@@ -35,39 +35,13 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QFrame" name="StatusFrame">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>370</y>
-       <width>640</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item alignment="Qt::AlignLeft">
-       <widget class="QLabel" name="StatusLabel">
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Status&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QProgressBar" name="progressBar">
-        <property name="value">
-         <number>100</number>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
     <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>400</x>
-       <y>40</y>
+       <x>390</x>
+       <y>50</y>
        <width>211</width>
-       <height>31</height>
+       <height>35</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
@@ -79,10 +53,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QTextEdit" name="UserID"/>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3"/>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLineEdit" name="lineEdit"/>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
@@ -90,7 +65,7 @@
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>330</y>
+       <y>370</y>
        <width>581</width>
        <height>41</height>
       </rect>
@@ -99,21 +74,35 @@
       <item>
        <widget class="QPushButton" name="AddUserButton">
         <property name="text">
-         <string>Add User</string>
+         <string>Add Client</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="DeleteUserButton">
         <property name="text">
-         <string>Delete User</string>
+         <string>Delete Client</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="ShowListButton">
+       <widget class="QPushButton" name="pushButton_3">
         <property name="text">
-         <string>Show List</string>
+         <string>Show Table</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="text">
+         <string>Load Data</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="text">
+         <string>Clear</string>
         </property>
        </widget>
       </item>
@@ -168,32 +157,93 @@
     <widget class="QTableView" name="tableView">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>80</y>
-       <width>531</width>
+       <x>50</x>
+       <y>100</y>
+       <width>541</width>
        <height>251</height>
       </rect>
      </property>
     </widget>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>100</y>
+       <width>541</width>
+       <height>251</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="newUserDialogue">
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>Office Phone</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Room</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="mobileLine"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="positionLine"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Mobile</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Other</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="nameLine"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Position</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLineEdit" name="otherInfoLine"/>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="roomLine"/>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="officePhoneLine"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QDialogButtonBox" name="buttonBox">
+        <property name="standardButtons">
+         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>640</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionOpen"/>
-    <addaction name="actionQuit"/>
-   </widget>
-   <addaction name="menuFile"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

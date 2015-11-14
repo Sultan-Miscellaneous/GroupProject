@@ -5,7 +5,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <QFont>
-
+#include <qmessagebox.h>
 
 using namespace std;
 
@@ -14,14 +14,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    model = new QStandardItemModel(50,5,this); //2 Rows and 3 Columns
+    model = new QStandardItemModel(10,6,this);
+    searchModel = new QStandardItemModel(1,6,this);
     model->setHorizontalHeaderItem(0, new QStandardItem(QString("Name")));
     model->setHorizontalHeaderItem(1, new QStandardItem(QString("Position")));
     model->setHorizontalHeaderItem(2, new QStandardItem(QString("Room")));
     model->setHorizontalHeaderItem(3, new QStandardItem(QString("Mobile")));
     model->setHorizontalHeaderItem(4, new QStandardItem(QString("Office Phone")));
-    model->setHorizontalHeaderItem(4, new QStandardItem(QString("Other")));
+    model->setHorizontalHeaderItem(5, new QStandardItem(QString("Other")));
     ui->tableView->setModel(model);
+    ui->gridLayoutWidget->hide();
 }
 
 MainWindow::~MainWindow()
@@ -72,23 +74,33 @@ void MainWindow::on_LogoutButton_clicked()
 
 void MainWindow::updateTable(){
     bst.inOrder();
+    model->clear();
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("Name")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Position")));
+    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Room")));
+    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Mobile")));
+    model->setHorizontalHeaderItem(4, new QStandardItem(QString("Office Phone")));
+    model->setHorizontalHeaderItem(5, new QStandardItem(QString("Other")));
+
     for(int i = 0; i<bst.size(); i++){
-//        QStandardItem *key = new QStandardItem(bst[i]->key)
-//        model->setItem(i,0,key);
-//        QStandardItem *pos = new QStandardItem(bst[i]->position)
-//        model->setItem(i,1,pos);
-//        QStandardItem *room = new QStandardItem(bst[i]->room)
-//        model->setItem(i,2,room);
-//        QStandardItem *mobile = new QStandardItem(bst[i]->mobile)
-//        model->setItem(i,4,mobile);
-//        QStandardItem *pos = new QStandardItem(bst[i]->phone)
-//        model->setItem(i,4,phone);
-//        QStandardItem *pos = new QStandardItem(bst[i]->phone)
-//        model->setItem(i,5,phone);
+        QStandardItem *key = new QStandardItem(bst[i]->data.key);
+        model->setItem(i,0,key);
+        QStandardItem *pos = new QStandardItem(bst[i]->data.position);
+        model->setItem(i,1,pos);
+        QStandardItem *room = new QStandardItem(QString::number(bst[i]->data.room));
+        model->setItem(i,2,room);
+        QStandardItem *mobile = new QStandardItem(bst[i]->data.mobile);
+        model->setItem(i,3,mobile);
+        QStandardItem *ph = new QStandardItem(bst[i]->data.phone);
+        model->setItem(i,4,ph);
+        QStandardItem *info = new QStandardItem(bst[i]->data.info);
+        model->setItem(i,5,info);
     }
+    ui->tableView->setModel(model);
 }
 
 void MainWindow::getData(QString read){
+    read.remove(0,7);
     QFile file(read);
     file.open(QIODevice::ReadOnly);
     QTextStream textStream(&file);
@@ -96,9 +108,134 @@ void MainWindow::getData(QString read){
     while (!textStream.atEnd()){
         QString k,p,r,m,ph,info;
         textStream >> k >> p >> r >> m >> ph >> info;
-        int room = atoi(r.toStdString().c_str());
-        bst.insert(k.toStdString(),p.toStdString(),room,m.toStdString(),ph.toStdString(),info.toStdString());
+        clientData data;
+        data.key=k;
+        data.position=p;
+        data.room=atoi(r.toStdString().c_str());;
+        data.mobile=m;
+        data.phone=ph;
+        data.info=info;
+        bst.insert(k,data);
     }
 
     file.close();
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    QUrl filePath = QFileDialog::getOpenFileUrl(this,tr("Select a txt file"),QDir::homePath());
+    if(!filePath.toString().isEmpty()){
+        MainWindow::getData(filePath.toString());
+        MainWindow::updateTable();
+    }
+}
+
+
+void MainWindow::on_AddUserButton_clicked()
+{
+    ui->tableView->setHidden(true);
+    ui->gridLayoutWidget->show();
+}
+
+void MainWindow::on_buttonBox_rejected()
+{
+    ui->tableView->setHidden(false);
+    ui->gridLayoutWidget->hide();
+}
+
+void MainWindow::on_buttonBox_accepted()
+{
+    clientData data;
+    data.key = ui->nameLine->text();
+    data.position = ui->positionLine->text();
+    data.room = ui->roomLine->text().toInt();
+    data.mobile = QString::number(ui->mobileLine->text().toInt());
+    data.phone = QString::number(ui->officePhoneLine->text().toInt());
+    data.info = ui->otherInfoLine->text();
+    if(bst.insert(data.key,data)==false){
+        QMessageBox box;
+        box.setText("User already exists");
+        box.exec();
+    }else{
+        QMessageBox box;
+        box.setText("User added successfully");
+        box.exec();
+        updateTable();
+        ui->tableView->show();
+        ui->gridLayoutWidget->hide();
+    }
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    ui->tableView->setModel(model);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+
+    clientData searchedClient;
+    if(bst.retrieve(ui->lineEdit->text(),searchedClient)==true){
+        searchModel->clear();
+        searchModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Name")));
+        searchModel->setHorizontalHeaderItem(1, new QStandardItem(QString("Position")));
+        searchModel->setHorizontalHeaderItem(2, new QStandardItem(QString("Room")));
+        searchModel->setHorizontalHeaderItem(3, new QStandardItem(QString("Mobile")));
+        searchModel->setHorizontalHeaderItem(4, new QStandardItem(QString("Office Phone")));
+        searchModel->setHorizontalHeaderItem(5, new QStandardItem(QString("Other")));
+
+        QStandardItem *key = new QStandardItem(searchedClient.key);
+        searchModel->setItem(0,0,key);
+        QStandardItem *pos = new QStandardItem(searchedClient.position);
+        searchModel->setItem(0,1,pos);
+        QStandardItem *room = new QStandardItem(QString::number(searchedClient.room));
+        searchModel->setItem(0,2,room);
+        QStandardItem *mobile = new QStandardItem(searchedClient.mobile);
+        searchModel->setItem(0,3,mobile);
+        QStandardItem *ph = new QStandardItem(searchedClient.phone);
+        searchModel->setItem(0,4,ph);
+        QStandardItem *info = new QStandardItem(searchedClient.info);
+        searchModel->setItem(0,5,info);
+        ui->tableView->setModel(searchModel);
+
+    }else{
+        QMessageBox box;
+        box.setText("Can't find User");
+        box.exec();
+    }
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    bst.clear();
+    searchModel->clear();
+    model->clear();
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("Name")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Position")));
+    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Room")));
+    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Mobile")));
+    model->setHorizontalHeaderItem(4, new QStandardItem(QString("Office Phone")));
+    model->setHorizontalHeaderItem(5, new QStandardItem(QString("Other")));
+    model->setRowCount(10);
+    model->setColumnCount(6);
+    ui->tableView->setModel(model);
+}
+
+void MainWindow::on_DeleteUserButton_clicked()
+{
+    QModelIndex index = ui->tableView->model()->index(ui->tableView->currentIndex().row(),0);
+    QMessageBox box;
+    box.setText("Are you sure you want to delete this record?");
+    box.setInformativeText(index.data().toString());
+    box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    box.setDefaultButton(QMessageBox::Yes);
+    switch(box.exec()){
+        case QMessageBox::Yes:
+        bst.remove(index.data().toString());
+        ui->tableView->model()->removeRow(index.row());
+
+        break;
+    case QMessageBox::No:
+        break;
+    }
 }
