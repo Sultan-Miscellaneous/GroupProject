@@ -13,8 +13,16 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    loginform.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    loginform.h \
+    hashtable.h \
+    binarysearchtree.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    loginform.ui
+
+DISTFILES += \
+    Logins

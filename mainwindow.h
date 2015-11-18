@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include "binarysearchtree.h"
+#include <QStandardItemModel>
 
 namespace Ui {
 class MainWindow;
@@ -13,6 +15,11 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void setAccessLevel(bool accessLevel,QString);
+    QString loginPath;
+    Ui::MainWindow *ui;
+    void getData(QString);
+    void updateTable();
     ~MainWindow();
 
 private slots:
@@ -20,10 +27,60 @@ private slots:
 
     void on_actionQuit_triggered();
 
-    void on_LoginButton_clicked();
+    void on_LogoutButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_AddUserButton_clicked();
+
+    void on_buttonBox_rejected();
+
+    void on_buttonBox_accepted();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_DeleteUserButton_clicked();
+
+    void on_SaveButton_clicked();
 
 private:
-    Ui::MainWindow *ui;
+    struct clientData{
+        clientData(){
+
+        }
+        clientData(QString key,QString position,int room,QString mobile,QString phone,QString info){
+            this->key = key;
+            this->position = position;
+            this->room = room;
+            this->mobile = mobile;
+            this->phone = phone;
+            this->info=info;
+        }
+        clientData(const clientData& rhs){
+            key = rhs.key;
+            position = rhs.position;
+            room = rhs.room;
+            mobile = rhs.mobile;
+            phone = rhs.phone;
+            info = rhs.info;
+        }
+
+        QString key;
+        QString position;
+        int room;
+        QString mobile;
+        QString phone;
+        QString info;
+    };
+    QString pathToDataFile;
+    QString accessLevel;
+    BinarySearchTree<QString,clientData> bst;
+    QStandardItemModel *model;
+    QStandardItemModel *searchModel;
 };
 
 #endif // MAINWINDOW_H
